@@ -30,6 +30,7 @@ namespace RECO.Forms
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Add = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panel1
@@ -40,11 +41,22 @@ namespace RECO.Forms
             this.panel1.Size = new System.Drawing.Size(400, 414);
             this.panel1.TabIndex = 1;
             // 
+            // Add
+            // 
+            this.Add.Location = new System.Drawing.Point(286, 469);
+            this.Add.Name = "Add";
+            this.Add.Size = new System.Drawing.Size(126, 42);
+            this.Add.TabIndex = 0;
+            this.Add.Text = "Add Keyword +";
+            this.Add.UseVisualStyleBackColor = true;
+           // this.Add.Click += new System.EventHandler(this.Add_Click);
+            // 
             // KeyWords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1063, 475);
+            this.ClientSize = new System.Drawing.Size(1063, 518);
+            this.Controls.Add(this.Add);
             this.Controls.Add(this.panel1);
             this.Name = "KeyWords";
             this.Text = "KeyWords";
@@ -55,6 +67,7 @@ namespace RECO.Forms
         #endregion
 
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button Add;
         //private System.Windows.Forms.Button button1;
     }
 }
