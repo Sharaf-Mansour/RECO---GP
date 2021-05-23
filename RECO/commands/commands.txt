@@ -1,0 +1,26 @@
+hello
+how are you
+hey reco
+google 
+open chrome
+close
+open youtube
+what day we are in
+what time is it 
+open notepad
+close tab
+new tab
+last tab
+save
+exit
+next
+previous
+go up 
+go down
+pause
+minimize
+maximize
+normal
+search for
+scroll down
+scroll up

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "3/prfc0D56NaOh1n7bOAf4D12lUHSMmKWFOT3gGYBfahl9Ncls6eqicneRc2nEtjJP9bUWXRANH1yk4K2K8X+A==",
+  "success": true,
+  "projectFilePath": "E:\\Rana\\RECO\\RECO\\RECO.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\naser\\.nuget\\packages\\fontawesome.sharp\\5.15.3\\fontawesome.sharp.5.15.3.nupkg.sha512",
+    "C:\\Users\\naser\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.1\\microsoft.netcore.platforms.5.0.1.nupkg.sha512",
+    "C:\\Users\\naser\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
+    "C:\\Users\\naser\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
+    "C:\\Users\\naser\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
+    "C:\\Users\\naser\\.nuget\\packages\\system.speech\\5.0.0\\system.speech.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

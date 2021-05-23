@@ -1,0 +1,7 @@
+if (!(content == repoNamelable.Text)) // compare the current value vs. input value
+                                {
+                                    Console.WriteLine(content);
+                                    repoNamelable.Text = content;
+                                    Console.WriteLine(repoNamelable.Text);
+                                    Directory.Move(dri.FullName, Path.Combine(dri.Name, path + content));
+                                }
