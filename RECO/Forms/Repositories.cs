@@ -147,7 +147,7 @@ namespace RECO.Forms
 
                 foreach (DirectoryInfo dri in dirArr)
                 {
-                    string allDirpath = @"D:\AllRepos\" + dri.Name;
+                    string allDirpath = @"D:\AllRepos\" + dri.Name ;
                     Button button_x = new Button(); // remove button
                     Label repoNamelable = new Label(); // """label that holds the repo name
                     Panel panel = new Panel(); // the panel holds dir name button && remove button && rename button
@@ -182,15 +182,7 @@ namespace RECO.Forms
                         };
 
                     };
-                    repoNamelable.Click += delegate
-                        {
-                            
-                            KeyWords keyWords = new KeyWords(allDirpath);
-                            
-                            this.Dispose();
-                            keyWords.Show();
-
-                        };
+                    
                     //panel.Click += delegate
                     //{
                     //    MessageBox.Show(dri.FullName);
@@ -245,10 +237,11 @@ namespace RECO.Forms
 
 
                                 Directory.Move(dri.FullName, Path.Combine(dri.Name, path + content));
+                                allDirpath = path + content;
                                 Done done = new Done();
                                 done.Show();
                                 repoNamelable.Text = content;
-                               
+                                MessageBox.Show(allDirpath);
                                 edit.Dispose();
                                 done.Dispose();
                             }
@@ -256,6 +249,15 @@ namespace RECO.Forms
                         };
 
 
+
+                    };
+                    repoNamelable.Click += delegate
+                    {
+
+                        KeyWords keyWords = new KeyWords(allDirpath);
+
+                        this.Dispose();
+                        keyWords.Show();
 
                     };
 
@@ -266,6 +268,7 @@ namespace RECO.Forms
                     panel.Controls.Add(repoRename);
                     flowLayoutPanel1.Controls.Add(panel); // add the panel itself to the flow panel
                     i++;
+                    
 
                 }//end foreach
 
