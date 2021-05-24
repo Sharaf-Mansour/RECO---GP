@@ -247,6 +247,10 @@ namespace RECO.Forms
                                 Directory.Move(dri.FullName, Path.Combine(dri.Name, path + content));
                                 Done done = new Done();
                                 done.Show();
+                                repoNamelable.Text = content;
+                               
+                                edit.Dispose();
+                                done.Dispose();
                             }
 
                         };

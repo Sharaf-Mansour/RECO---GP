@@ -55,7 +55,7 @@ namespace RECO.Forms
             this.Yes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Yes.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.Yes.UseVisualStyleBackColor = true;
-//            this.Yes.Click += new System.EventHandler(this.Yes_Click);
+          //  this.Yes.Click += new System.EventHandler(this.Yes_Click);
             // 
             // Cancel
             // 

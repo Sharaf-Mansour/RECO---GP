@@ -29,7 +29,6 @@ C:\Users\a7med\OneDrive\Desktop\RECO\RECO\obj\Debug\net5.0-windows\RECO.Forms.Do
 C:\Users\a7med\OneDrive\Desktop\RECO\RECO\obj\Debug\net5.0-windows\RECO.Forms.DeleteDialogeMessage.resources
 C:\Users\a7med\OneDrive\Desktop\RECO\RECO\obj\Debug\net5.0-windows\RECO.Forms.EditDialogeMessage.resources
 C:\Users\a7med\OneDrive\Desktop\RECO\RECO\obj\Debug\net5.0-windows\RECO.Forms.RunTime.resources
-E:\Rana\RECO\RECO\obj\Debug\net5.0-windows\RECO.csprojAssemblyReference.cache
 E:\Rana\RECO\RECO\obj\Debug\net5.0-windows\RECO.formMain.resources
 E:\Rana\RECO\RECO\obj\Debug\net5.0-windows\RECO.Forms.DeleteDialogeMessage.resources
 E:\Rana\RECO\RECO\obj\Debug\net5.0-windows\RECO.Forms.Done.resources
@@ -60,3 +59,4 @@ E:\Rana\RECO\RECO\bin\Debug\net5.0-windows\System.Speech.dll
 E:\Rana\RECO\RECO\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp2.1\System.Speech.dll
 E:\Rana\RECO\RECO\obj\Debug\net5.0-windows\RECO.csproj.CopyComplete
 E:\Rana\RECO\RECO\obj\Debug\net5.0-windows\RECO.genruntimeconfig.cache
+E:\Rana\RECO\RECO\obj\Debug\net5.0-windows\RECO.csprojAssemblyReference.cache
