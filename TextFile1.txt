@@ -1,7 +1,130 @@
-if (!(content == repoNamelable.Text)) // compare the current value vs. input value
-                                {
-                                    Console.WriteLine(content);
-                                    repoNamelable.Text = content;
-                                    Console.WriteLine(repoNamelable.Text);
-                                    Directory.Move(dri.FullName, Path.Combine(dri.Name, path + content));
-                                }
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using RECO.Forms;
+namespace RECO.Forms
+{
+    public partial class KeyWords : Form
+    {
+        public KeyWords(string dirPath)
+        {
+            InitializeComponent();
+            viewKeywords(dirPath);
+        }
+
+        public void viewKeywords(string dirPath)
+        {
+
+            int i = 1;
+            Button keyWord = new Button();
+          //  panel1.Controls.Add(keyWord);
+           
+            /** Button keyword style :
+             * 
+             * 
+             * 
+             * */
+
+            keyWord.Location = new System.Drawing.Point(10, 9);
+            keyWord.Name = "KeyWord";
+            keyWord.Size = new System.Drawing.Size(237, 36);
+            keyWord.TabIndex = 0;
+            keyWord.Text = "KeyWord";
+            keyWord.UseVisualStyleBackColor = true;
+
+            // 
+            // addButton
+            // 
+            int directoryCount = System.IO.Directory.GetDirectories(dirPath).Length;
+            int Number = directoryCount;
+            int firstRepo = Number + 1;
+            string createdName = @"\New Repo" + firstRepo;
+            string dir = dirPath + createdName;
+            string[] dirs = System.IO.Directory.GetDirectories(dirPath); // add all dirs in an array to check if it empty or not
+            DirectoryInfo di = new DirectoryInfo(dirPath); // get all info
+            // Get a reference to each directory in that directory
+            DirectoryInfo[] dirArr = di.GetDirectories();
+            // If directory does not exist, create it
+            
+            if (Number == 0)
+            {
+                /**
+                 * 
+                 * 
+                 * Defualt
+                 */
+               
+                Directory.CreateDirectory(dir);
+                keyWord.Text = "Keyword" + Number;
+                panel1.Controls.Add(keyWord);
+
+
+                //  keyWord.Text = "Key word" + keyWordnumber;
+
+            }
+            else
+            {
+
+                foreach (DirectoryInfo dri in dirArr)
+
+                {
+                    Button keyWord = new Button();
+                    //  panel1.Controls.Add(keyWord);
+
+                    /** Button keyword style :
+                     * 
+                     * 
+                     * 
+                     * */
+
+                    keyWord.Location = new System.Drawing.Point(10, 9);
+                    keyWord.Name = "KeyWord";
+                    keyWord.Size = new System.Drawing.Size(237, 36);
+                    keyWord.TabIndex = 0;
+                    keyWord.Text = "KeyWord";
+                    keyWord.UseVisualStyleBackColor = true;
+                    // int value = dirArr.Count();
+                    keyWord.TabIndex = i;
+                    keyWord.Text = dri.Name ;
+                    panel1.Controls.Add(keyWord);
+                    i++;
+
+                }
+
+
+            } 
+
+
+
+
+
+
+
+        }
+
+        public void addKeywords()
+        {
+            // 
+            // addButton
+            // 
+            Button addButton = new Button();
+            addButton.Location = new System.Drawing.Point(254, 9);
+            addButton.Name = "addButton";
+            addButton.Size = new System.Drawing.Size(47, 36);
+            addButton.TabIndex = 1;
+            addButton.Text = "+";
+            addButton.UseVisualStyleBackColor = true;
+
+            panel1.Controls.Add(addButton);
+        }
+
+        
+    }
+}

@@ -43,7 +43,6 @@ namespace RECO.Forms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(487, 414);
             this.panel1.TabIndex = 1;
-//            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // Add
             // 
@@ -53,6 +52,7 @@ namespace RECO.Forms
             this.Add.TabIndex = 0;
             this.Add.Text = "Add Keyword +";
             this.Add.UseVisualStyleBackColor = true;
+            this.Add.Click += new System.EventHandler(this.Addbutton);
             // 
             // button1
             // 

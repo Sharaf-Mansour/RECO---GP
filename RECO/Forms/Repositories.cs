@@ -147,7 +147,7 @@ namespace RECO.Forms
 
                 foreach (DirectoryInfo dri in dirArr)
                 {
-                    string allDirpath = @"D:\AllRepos\" + dri.Name ;
+                   string allDirpath = @"D:\AllRepos\" + dri.Name ;
                     Button button_x = new Button(); // remove button
                     Label repoNamelable = new Label(); // """label that holds the repo name
                     Panel panel = new Panel(); // the panel holds dir name button && remove button && rename button
@@ -268,9 +268,12 @@ namespace RECO.Forms
                     panel.Controls.Add(repoRename);
                     flowLayoutPanel1.Controls.Add(panel); // add the panel itself to the flow panel
                     i++;
+
                     
 
-                }//end foreach
+
+
+    }//end foreach
 
 
 
@@ -412,5 +415,6 @@ namespace RECO.Forms
 
             }
         }
+       
     }
 }

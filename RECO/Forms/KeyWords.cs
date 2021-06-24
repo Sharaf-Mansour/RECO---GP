@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RECO.Forms;
+
 namespace RECO.Forms
 {
     public partial class KeyWords : Form
@@ -17,9 +18,12 @@ namespace RECO.Forms
         {
             InitializeComponent();
             viewKeyWords(dirPath);
-            
-            
+            // Add_Click(dirPath);
+            //Add_click(dirPath);
+
         }
+
+
         public string CheckName(string content, string path)
         {
             string compare = "default";
@@ -55,7 +59,7 @@ namespace RECO.Forms
                 foreach (DirectoryInfo dri in dirArr)
 
                 {
-                    string allDirpath = dirPath +@"\" + dri.Name;
+                    string allDirpath = dirPath + @"\" + dri.Name;
                     Button KeyWord = new Button();
                     Button Delete = new Button();
                     Button Rename = new Button();
@@ -71,56 +75,56 @@ namespace RECO.Forms
                     // 
                     // panel2
                     // 
-                     
-                     
-                     
-                    
-                     //panel2.Location = new Point(10, 10);
-                     panel2.Name = "panel2";
-                     panel2.Size = new System.Drawing.Size(400, 150);
-                   //  panel2.TabIndex = i;
+
+
+
+
+                    //panel2.Location = new Point(10, 10);
+                    panel2.Name = "panel2";
+                    panel2.Size = new System.Drawing.Size(400, 150);
+                    //  panel2.TabIndex = i;
                     panel2.Tag = i;
-                   panel2.TabIndex = i;
-                    
-                   // panel1.TabIndex = i;
+                    panel2.TabIndex = i;
+
+                    // panel1.TabIndex = i;
                     // 
                     // KeyWord
                     // 
-                   // KeyWord.Location = new System.Drawing.Point(11, 10);
-                   //  KeyWord.Name = "KeyWord";
-                   //  KeyWord.Size = new System.Drawing.Size(255, 66);
-                   // // KeyWord.TabIndex = i;
-                   //  KeyWord.Text = "KeyWord";
-                   ////  KeyWord.Dock = DockStyle.Top;
-                   //  KeyWord.UseVisualStyleBackColor = true;
-                   // KeyWord.Dock = DockStyle.Top;
+                    // KeyWord.Location = new System.Drawing.Point(11, 10);
+                    //  KeyWord.Name = "KeyWord";
+                    //  KeyWord.Size = new System.Drawing.Size(255, 66);
+                    // // KeyWord.TabIndex = i;
+                    //  KeyWord.Text = "KeyWord";
+                    ////  KeyWord.Dock = DockStyle.Top;
+                    //  KeyWord.UseVisualStyleBackColor = true;
+                    // KeyWord.Dock = DockStyle.Top;
 
-                   // // 
-                   // // Delete
-                   // // 
-                   // Delete.Location = new System.Drawing.Point(272, 26);
-                   //  Delete.Name = "Delete";
-                   //  Delete.Size = new System.Drawing.Size(54, 35);
-                   //  Delete.TabIndex = i;
-                   //  Delete.Text = "Delete";
-                   //  Delete.UseVisualStyleBackColor = true;
-                    
-                   //  Delete.Dock = DockStyle.Top;
-                   // // 
-                   // // Rename
-                   // // 
-                   // Rename.Location = new System.Drawing.Point(332, 26);
-                   //  Rename.Name = "Rename";
-                   //  Rename.Size = new System.Drawing.Size(57, 35);
-                   //  Rename.TabIndex = i;
-                   //  Rename.Text = "Rename";
-                   //  Rename.UseVisualStyleBackColor = true;
-                   // Rename.Dock = DockStyle.Top;
+                    // // 
+                    // // Delete
+                    // // 
+                    // Delete.Location = new System.Drawing.Point(272, 26);
+                    //  Delete.Name = "Delete";
+                    //  Delete.Size = new System.Drawing.Size(54, 35);
+                    //  Delete.TabIndex = i;
+                    //  Delete.Text = "Delete";
+                    //  Delete.UseVisualStyleBackColor = true;
+
+                    //  Delete.Dock = DockStyle.Top;
+                    // // 
+                    // // Rename
+                    // // 
+                    // Rename.Location = new System.Drawing.Point(332, 26);
+                    //  Rename.Name = "Rename";
+                    //  Rename.Size = new System.Drawing.Size(57, 35);
+                    //  Rename.TabIndex = i;
+                    //  Rename.Text = "Rename";
+                    //  Rename.UseVisualStyleBackColor = true;
+                    // Rename.Dock = DockStyle.Top;
                     // Rename.Dock = DockStyle.Top;
                     //panel2.Controls.Add(KeyWord);
                     //panel2.Controls.Add(Rename);
                     //panel2.Controls.Add(Delete);
-                    
+
 
 
                     KeyWord.Location = new System.Drawing.Point(0, 0);
@@ -160,7 +164,7 @@ namespace RECO.Forms
                         delete.Show();
                         delete.Yes.Click += delegate
                         {
-                            
+
                             if (Directory.Exists(allDirpath))
                             {
                                 Directory.Delete(allDirpath);
@@ -171,8 +175,8 @@ namespace RECO.Forms
 
                             done.Show();
                         };
-                        
-                        
+
+
                     };
 
                     Rename.Click += delegate
@@ -220,7 +224,7 @@ namespace RECO.Forms
                             {
 
 
-                               
+
                                 Directory.Move(dri.FullName, Path.Combine(dri.Name, dirPath + @"\" + content));
                                 Done done = new Done();
                                 edit.Dispose();
@@ -230,7 +234,7 @@ namespace RECO.Forms
 
 
                     };
-                    
+
 
                 }
             }
@@ -240,15 +244,28 @@ namespace RECO.Forms
                 viewKeyWords(dirPath);
             }
 
-            Add.Click += delegate
-            {
-                Directory.CreateDirectory(dir);
-                viewKeyWords(dirPath);
-            };
-
-
+            //Add.Click += delegate
+            //{
+            //    MessageBox.Show("s");
+            //    //Directory.CreateDirectory(dir);
+            //    //viewKeyWords(dirPath);
+            //};
         }
 
-        
+        //Add.Click += delegate
+        //{
+        //    MessageBox.Show("s");
+        //    Directory.CreateDirectory(dir);
+        //    viewKeyWords(dirPath);
+        //};
+
+
+
+
+        //public void Add_click(string dirPath)
+        //{
+
+        //    MessageBox.Show(dirPath);
+        //}
     }
 }
