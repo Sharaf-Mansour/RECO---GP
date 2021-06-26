@@ -74,21 +74,15 @@ namespace RECO.Forms
 
                 string path = Environment.GetFolderPath(
                     Environment.SpecialFolder.ProgramFiles);
-              //  var psi = new ProcessStartInfo(
-              //"rundll32.exe",
-              //String.Format(
-              //    "\"{0}{1}\", ImageView_Fullscreen {2}",
-              //    Environment.Is64BitOperatingSystem ?
-              //        path.Replace(" (x86)", "") :
-              //        path
-              //        ,
-              //    @"\Windows Photo Viewer\PhotoViewer.dll",
-              //    Source)
-              //);
+                var psi = new ProcessStartInfo( "rundll32.exe",
+                    String.Format( "\"{0}{1}\", ImageView_Fullscreen {2}",
+                  Environment.Is64BitOperatingSystem ?  path.Replace(" (x86)", "") : path,
+                  @"\Windows Photo Viewer\PhotoViewer.dll",
+                  Source));
 
-               var psi = new ProcessStartInfo("rundll32.exe",$@"'{(Environment.Is64BitOperatingSystem ?path.Replace(" (x86)", "") :
-                  path)}\Windows Photo Viewer\PhotoViewer.dll', ImageView_Fullscreen '{Source}'");
- 
+                //var psi = new ProcessStartInfo("rundll32.exe",$@"'{(Environment.Is64BitOperatingSystem ?path.Replace(" (x86)", "") :
+                //        path)}\Windows Photo Viewer\PhotoViewer.dll', ImageView_Fullscreen '{Source}'");
+
                 psi.UseShellExecute = false;
 
                 var viewer = Process.Start(psi);
