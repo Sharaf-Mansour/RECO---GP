@@ -85,13 +85,14 @@ namespace RECO.Forms
 
                 psi.UseShellExecute = false;
 
-                var viewer = Process.Start(psi);
+             
+               Process.Start(psi);
 
-                Process.Start(@"%SystemRoot%\System32\rundll32.exe %ProgramFiles%\Windows Photo Viewer\PhotoViewer.dll", $@"{Source} ");
-                Process photoViewer = new Process();
-                photoViewer.StartInfo.FileName = Source;
-                photoViewer.StartInfo.Arguments = Source;
-                photoViewer.Start();
+               // Process.Start(@"%SystemRoot%\System32\rundll32.exe %ProgramFiles%\Windows Photo Viewer\PhotoViewer.dll", $@"{Source} ");
+                //Process photoViewer = new Process();
+                //photoViewer.StartInfo.FileName = Source;
+                //photoViewer.StartInfo.Arguments = Source;
+                //photoViewer.Start();
             };
 
         }
