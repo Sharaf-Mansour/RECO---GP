@@ -41,7 +41,7 @@ namespace RECO.Forms
             this.panel1.AutoScroll = true;
             this.panel1.Location = new System.Drawing.Point(12, 49);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(487, 414);
+            this.panel1.Size = new System.Drawing.Size(400, 414);
             this.panel1.TabIndex = 1;
             // 
             // Add
@@ -52,7 +52,7 @@ namespace RECO.Forms
             this.Add.TabIndex = 0;
             this.Add.Text = "Add Keyword +";
             this.Add.UseVisualStyleBackColor = true;
-            this.Add.Click += new System.EventHandler(this.Addbutton);
+            this.Add.Click += new System.EventHandler(this.Add_Click);
             // 
             // button1
             // 

@@ -31,6 +31,7 @@ namespace RECO.Forms
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.BtnAddRepo = new FontAwesome.Sharp.IconButton();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -67,12 +68,25 @@ namespace RECO.Forms
             this.BtnAddRepo.UseVisualStyleBackColor = false;
             this.BtnAddRepo.Click += new System.EventHandler(this.iconButton1_Click);
             // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel2.AutoScroll = true;
+            this.flowLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(355, 31);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(413, 300);
+            this.flowLayoutPanel2.TabIndex = 1;
+            this.flowLayoutPanel2.Visible = false;
+            // 
             // Repositories
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(16)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.BtnAddRepo);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Repositories";
@@ -86,5 +100,6 @@ namespace RECO.Forms
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private FontAwesome.Sharp.IconButton BtnAddRepo;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }

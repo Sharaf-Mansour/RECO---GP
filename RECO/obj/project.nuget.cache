@@ -1,15 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "3/prfc0D56NaOh1n7bOAf4D12lUHSMmKWFOT3gGYBfahl9Ncls6eqicneRc2nEtjJP9bUWXRANH1yk4K2K8X+A==",
+  "dgSpecHash": "xR7X0rr4v/plWlU+wpZyNGaYXtHYGrx/SCU8rTecp1QMTtGUsJQbrGPUNaI/NEVE0naTckDYrc6o4mjIC6SmNA==",
   "success": true,
-  "projectFilePath": "E:\\Rana\\RECO\\RECO\\RECO.csproj",
+  "projectFilePath": "C:\\Users\\shara\\Documents\\GitHub\\RECO---GP\\RECO\\RECO.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\naser\\.nuget\\packages\\fontawesome.sharp\\5.15.3\\fontawesome.sharp.5.15.3.nupkg.sha512",
-    "C:\\Users\\naser\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.1\\microsoft.netcore.platforms.5.0.1.nupkg.sha512",
-    "C:\\Users\\naser\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
-    "C:\\Users\\naser\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
-    "C:\\Users\\naser\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
-    "C:\\Users\\naser\\.nuget\\packages\\system.speech\\5.0.0\\system.speech.5.0.0.nupkg.sha512"
+    "C:\\Users\\shara\\.nuget\\packages\\fontawesome.sharp\\5.15.3\\fontawesome.sharp.5.15.3.nupkg.sha512",
+    "C:\\Users\\shara\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.1\\microsoft.netcore.platforms.5.0.1.nupkg.sha512",
+    "C:\\Users\\shara\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
+    "C:\\Users\\shara\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
+    "C:\\Users\\shara\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
+    "C:\\Users\\shara\\.nuget\\packages\\system.speech\\5.0.0\\system.speech.5.0.0.nupkg.sha512",
+    "C:\\Users\\shara\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.5\\microsoft.netcore.app.host.win-x64.5.0.5.nupkg.sha512"
   ],
   "logs": []
 }

@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Linq;
+using System.Diagnostics;
 
 namespace RECO.Forms
 {
@@ -10,12 +11,24 @@ namespace RECO.Forms
     {
         private Panel Panel;
         private Button DeleteButton;
+        private PictureBox Picture;
+
         private Button EditButton;
         private Label NothingIn;
-        public Repositories()
+        private bool Frender = false;
+        public Repositories(string? Path = null)
         {
             InitializeComponent();
-            viewRepos(); // Method to show all repos and its actions
+            if (Path is null)
+            {
+                viewRepos();
+            }
+            else
+            {
+                viewRepos(Path.ToString()+@"\");
+            }
+
+            // Method to show all repos and its actions
         }
 
 
@@ -46,6 +59,22 @@ namespace RECO.Forms
             DeleteButton.TextAlign = ContentAlignment.MiddleCenter;
             DeleteButton.Location = new Point(70, 45);
             DeleteButton.Dock = DockStyle.Bottom;
+        }
+
+        private void PictureSetter(object senderBtn,string Source)
+        {
+            Picture = (PictureBox)senderBtn;
+            Picture.Location = new Point(70, 45);
+            Panel.Size = new Size(180, 100);
+            Picture.Margin = new Padding(25);
+            Picture.SizeMode = PictureBoxSizeMode.StretchImage;
+            Picture.Image  = Image.FromFile(Source);
+            Picture.Dock = DockStyle.Top;
+            Picture.Click += delegate{
+          //  Process.Start($@"""{Source}"" ");
+
+            };
+
         }
 
 
@@ -122,9 +151,25 @@ namespace RECO.Forms
             }
             return compare;
         }
-        
-            public void viewRepos()
+        string _PATH;
+            public void viewRepos(string path = @"D:\AllRepos\")
         {
+            if (Frender)
+            {
+                 flowLayoutPanel1.BackColor = System.Drawing.Color.White;
+                flowLayoutPanel1.Width = 270;
+                flowLayoutPanel1.Height += 100;
+                flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
+                flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left))));
+                flowLayoutPanel2.Visible = true;
+             
+
+
+
+            }
+            flowLayoutPanel1.Controls.Clear();
+
+            _PATH = path+@"\";
             /* ALGORITHM 
              
             1) get all dirs in the path
@@ -133,21 +178,21 @@ namespace RECO.Forms
 
             */
             // Make a reference to a directory
-            string path = @"D:\AllRepos\"; //path
-            string[] dirs = System.IO.Directory.GetDirectories(path); // add all dirs in an array to check if it empty or not
-            DirectoryInfo di = new DirectoryInfo(@"D:\AllRepos\"); // get all info
+            //path
+            string[] dirs = System.IO.Directory.GetDirectories(path);// add all dirs in an array to check if it empty or not
+            DirectoryInfo di = new DirectoryInfo(path); // get all info
 
             // Get a reference to each directory in that directory
             DirectoryInfo[] dirArr = di.GetDirectories();
             int i = 0;
             // Display the names of the directories.
 
-            if (!(dirs.Length == 0))
+            if ((dirs.Length != 0))
             {
 
-                foreach (DirectoryInfo dri in dirArr)
+                foreach (DirectoryInfo dri in dirArr.OrderBy(_=> _.Name))
                 {
-                   string allDirpath = @"D:\AllRepos\" + dri.Name ;
+                   string allDirpath = path + dri.Name ;
                     Button button_x = new Button(); // remove button
                     Label repoNamelable = new Label(); // """label that holds the repo name
                     Panel panel = new Panel(); // the panel holds dir name button && remove button && rename button
@@ -233,9 +278,6 @@ namespace RECO.Forms
 
                             else
                             {
-
-
-
                                 Directory.Move(dri.FullName, Path.Combine(dri.Name, path + content));
                                 allDirpath = path + content;
                                 Done done = new Done();
@@ -254,10 +296,31 @@ namespace RECO.Forms
                     repoNamelable.Click += delegate
                     {
 
-                        KeyWords keyWords = new KeyWords(allDirpath);
+                        //  KeyWords keyWords = new KeyWords(allDirpath);
+                        if (Frender)
+                        {
+                          flowLayoutPanel2.Controls.Clear();
+                          DirectoryInfo DirectoryInfo = new DirectoryInfo($@"{path}/{repoNamelable.Text}"); // get all info
+                                  foreach (FileInfo item in DirectoryInfo.GetFiles())
+                                    {
+                                        if (Path.GetExtension(item.FullName).ToLower() is ".jpg" or ".png")
+                                        {
+                                            PictureBox PictureBox = new PictureBox();
+                                            PictureSetter(PictureBox, item.FullName);
+                                            flowLayoutPanel2.Controls.Add(PictureBox);
+                                        }
+                                    }
+                           return;
+                        }
+                        else
+                        {
+                            Frender = true;
+                            viewRepos(allDirpath);
+                        }
+                      
 
-                        this.Dispose();
-                        keyWords.Show();
+                     //   this.Dispose();
+                     //   keyWords.Show();
 
                     };
 
@@ -302,11 +365,54 @@ namespace RECO.Forms
         private void iconButton1_Click(object sender, EventArgs e)
         {
             addReposmsg.Dispose(); // if user v
-            string path = @"D:\AllRepos\"; //path
-            int directoryCount = System.IO.Directory.GetDirectories(@"D:\AllRepos\").Length;
-            int Number = directoryCount + 1;
-            var createdName = "New Repo " + Number;
-            string dir = @"D:\AllRepos\ " + createdName;
+            string path = _PATH ; //path
+           
+
+            MessageBox.Show((System.IO.Directory.GetDirectories(path).OrderBy(_ =>(_.Length,_)).LastOrDefault()));
+
+            int directoryCount = System.IO.Directory.GetDirectories(path).Length;
+            int G = 2;
+            string createdName =" ";
+            foreach (var item in System.IO.Directory.GetDirectories(path))
+            {
+                if (item == $@"{path} New Repo ({G})")
+                {
+                    G++;
+                    createdName = $"New Repo ({G})";
+              //      MessageBox.Show($@"{path} {createdName}");
+                    if ((System.IO.Directory.GetDirectories(path).OrderBy(_ => (_.Length, _)).LastOrDefault() == $@"{path} {createdName}"))
+                    {
+                        createdName = $"New Repo ({++G})";
+                        break;
+                    }
+                }
+                else
+                {
+                    createdName = $"New Repo ({G})";
+              //      MessageBox.Show($@"{path} {createdName}");
+                    if (System.IO.Directory.GetDirectories($@"{path}").Contains($@"{path} {createdName}"))
+                    {
+                        G++;
+                        if ((System.IO.Directory.GetDirectories(path).OrderBy(_ => (_.Length, _)).LastOrDefault() == $@"{path} {createdName}"))
+                        {
+                            createdName = $"New Repo ({G})";
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        createdName = $"New Repo ({G})";
+                        break;
+                    }
+                }
+            }
+            //  int Number = directoryCount + 1;
+       //     MessageBox.Show($@"{path} {createdName}");
+            if (string.IsNullOrWhiteSpace(createdName)  )
+            {
+                createdName = "New Repo 1";
+            }
+            string dir = @$"{path} {createdName}";
             // If directory does not exist, create it
             if (!Directory.Exists(dir))
             {

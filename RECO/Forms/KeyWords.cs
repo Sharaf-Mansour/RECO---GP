@@ -14,10 +14,16 @@ namespace RECO.Forms
 {
     public partial class KeyWords : Form
     {
-        public KeyWords(string dirPath)
+
+
+        private string dirPath; 
+        private string dirPathT;
+        public KeyWords(string DirPath)
         {
             InitializeComponent();
-            viewKeyWords(dirPath);
+            dirPath = DirPath +"\\";
+            dirPathT = DirPath;
+            viewKeyWords(DirPath);
             // Add_Click(dirPath);
             //Add_click(dirPath);
 
@@ -54,7 +60,7 @@ namespace RECO.Forms
                                                            // Get a reference to each directory in that directory
             DirectoryInfo[] dirArr = di.GetDirectories();
             int i = 0;
-            if (!(dirs.Length == 0))
+            if ((dirs.Length != 0))
             {
                 foreach (DirectoryInfo dri in dirArr)
 
@@ -80,13 +86,13 @@ namespace RECO.Forms
 
 
                     //panel2.Location = new Point(10, 10);
-                    panel2.Name = "panel2";
+                    panel2.Name = "panel" + i;
                     panel2.Size = new System.Drawing.Size(400, 150);
                     //  panel2.TabIndex = i;
                     panel2.Tag = i;
                     panel2.TabIndex = i;
-
-                    // panel1.TabIndex = i;
+                    panel2.Dock = DockStyle.Top;
+                     // panel1.TabIndex = i;
                     // 
                     // KeyWord
                     // 
@@ -138,7 +144,7 @@ namespace RECO.Forms
 
 
                     Delete.Location = new Point(306, 20);
-                    Delete.Name = "Delete";
+                    Delete.Name = "Delete"+i;
                     Delete.Size = new System.Drawing.Size(35, 32);
                     Delete.TabIndex = i;
                     Delete.Text = "X";
@@ -147,7 +153,7 @@ namespace RECO.Forms
                     panel2.Controls.Add(Delete);
 
                     Rename.Location = new Point(306, 20);
-                    Rename.Name = "Rename";
+                    Rename.Name = "Rename"+i;
                     Rename.Size = new System.Drawing.Size(35, 32);
                     Rename.TabIndex = i;
                     Rename.Text = "I";
@@ -252,6 +258,107 @@ namespace RECO.Forms
             //};
         }
 
+        private void Add_Click(object sender, EventArgs e)
+        {
+
+            int directoryCount = System.IO.Directory.GetDirectories(dirPath).Length;
+            int Number = directoryCount + 1;
+            var createdName = "New Repo " + Number;
+            string dir = dirPath + createdName;
+            // If directory does not exist, create it
+            if (!Directory.Exists(dir))
+            {
+
+                Directory.CreateDirectory(dir);
+                DirectoryInfo d = new DirectoryInfo(dir);
+                Button button_x = new Button();
+                Panel panel = panel1;
+                Label repoName = new Label();
+                //   PanelView(panel, repoName);
+                Button repoRename = new Button();
+                //    buttonDelete(button_x);
+                //     buttonEdit(repoRename);
+                repoName.Text = createdName;
+                panel.Controls.Add(repoName);
+                panel.Controls.Add(repoRename);
+                panel.Controls.Add(button_x);
+                repoRename.Click += delegate //rename button
+                {
+                    EditDialogeMessage edit = new EditDialogeMessage();
+                    edit.Show();
+                    int parsedValue;
+                    string content;
+                    var defualt = repoName.Text;
+                    edit.EditBtn.Click += delegate
+                    {
+
+                        content = edit.RenameRepoTxtBox.Text;
+
+
+                        if (String.IsNullOrEmpty(content) || String.IsNullOrWhiteSpace(content)) // if the input is null, handle it
+                        {
+                            MessageBox.Show("Please, Enter a valid repo name", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        }
+                        else if (int.TryParse(content, out parsedValue)) // if it number, handle it
+                        {
+                            Convert.ToInt64(content);
+                            MessageBox.Show("Repo name Cannot be number", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        }
+
+                        else if (content == repoName.Text)
+                        {
+
+                            Done done = new Done();
+                            done.Show();
+                        }
+
+                        else if (content == CheckName(content, dirPath))
+                        {
+                            MessageBox.Show("Repo name is already exists", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        else
+                        {
+
+
+
+                            Directory.Move(d.FullName, Path.Combine(d.Name, dirPath + content));
+                            Done done = new Done();
+                            done.Show();
+                        }
+                    };//end delegete 
+                };
+
+                button_x.Click += delegate // delete button action
+                {
+                    DeleteDialogeMessage delete = new DeleteDialogeMessage();
+                    delete.Show();
+                    Done done = new Done();
+                    delete.Yes.Click += delegate
+                    {
+                        if (Directory.Exists(dir))
+                        {
+                            Directory.Delete(dir);
+                        }
+
+                        delete.Dispose();
+
+                        panel.Controls.Clear();
+                        panel.Dispose();
+                        done.Show();
+                    };
+
+                };
+
+            }
+            viewKeyWords(dirPathT);
+
+        }
         //Add.Click += delegate
         //{
         //    MessageBox.Show("s");
@@ -268,4 +375,4 @@ namespace RECO.Forms
         //    MessageBox.Show(dirPath);
         //}
     }
-}
+    }
