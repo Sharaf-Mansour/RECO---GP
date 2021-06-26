@@ -71,8 +71,33 @@ namespace RECO.Forms
             Picture.Image  = Image.FromFile(Source);
             Picture.Dock = DockStyle.Top;
             Picture.Click += delegate{
-          //  Process.Start($@"""{Source}"" ");
 
+                string path = Environment.GetFolderPath(
+                    Environment.SpecialFolder.ProgramFiles);
+              //  var psi = new ProcessStartInfo(
+              //"rundll32.exe",
+              //String.Format(
+              //    "\"{0}{1}\", ImageView_Fullscreen {2}",
+              //    Environment.Is64BitOperatingSystem ?
+              //        path.Replace(" (x86)", "") :
+              //        path
+              //        ,
+              //    @"\Windows Photo Viewer\PhotoViewer.dll",
+              //    Source)
+              //);
+
+               var psi = new ProcessStartInfo("rundll32.exe",$@"'{(Environment.Is64BitOperatingSystem ?path.Replace(" (x86)", "") :
+                  path)}\Windows Photo Viewer\PhotoViewer.dll', ImageView_Fullscreen '{Source}'");
+ 
+                psi.UseShellExecute = false;
+
+                var viewer = Process.Start(psi);
+
+                Process.Start(@"%SystemRoot%\System32\rundll32.exe %ProgramFiles%\Windows Photo Viewer\PhotoViewer.dll", $@"{Source} ");
+                Process photoViewer = new Process();
+                photoViewer.StartInfo.FileName = Source;
+                photoViewer.StartInfo.Arguments = Source;
+                photoViewer.Start();
             };
 
         }
