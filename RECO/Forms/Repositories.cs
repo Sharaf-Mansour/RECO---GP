@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Linq;
 using System.Diagnostics;
+using ePOSOne.btnProduct;
 
 namespace RECO.Forms
 {
@@ -13,7 +14,7 @@ namespace RECO.Forms
         private Button DeleteButton;
         private PictureBox Picture;
 
-        private Button EditButton;
+        private RoundedButton EditButton;
         private Label NothingIn;
         private bool Frender = false;
         public Repositories(string? Path = null)
@@ -70,6 +71,8 @@ namespace RECO.Forms
             Picture.SizeMode = PictureBoxSizeMode.StretchImage;
             Picture.Image  = Image.FromFile(Source);
             Picture.Dock = DockStyle.Top;
+            Picture.Size = new Size(180, 100);
+
             Picture.Click += delegate{
 
                 string path = Environment.GetFolderPath(
@@ -100,7 +103,7 @@ namespace RECO.Forms
 
         private void buttonEdit(object senderBtn)
         {
-            EditButton = (Button)senderBtn;
+            EditButton = (RoundedButton)senderBtn;
             EditButton.FlatStyle = FlatStyle.Flat;
             EditButton.BackColor = Color.FromArgb(237, 168, 116);
             EditButton.ForeColor = Color.Red;
@@ -109,11 +112,30 @@ namespace RECO.Forms
             EditButton.TextAlign = ContentAlignment.MiddleCenter;
             EditButton.Location = new Point(70, 45);
             EditButton.Dock = DockStyle.Bottom;
+            EditButton.BorderColor = Color.Yellow;
         }
 
 
 
         private void PanelView(object senderPnl, Label label)
+        {
+            Panel = (Panel)senderPnl;
+            Panel.BackColor = Color.FromArgb(169, 83, 118);
+            Panel.ForeColor = Color.White;
+            Panel.Margin = new Padding(20);
+            Panel.BorderStyle = BorderStyle.FixedSingle;
+            Panel.Location = new Point(56, 90);
+            Panel.Size = new Size(180, 100);
+            label.BorderStyle = BorderStyle.None;
+            label.Font = new Font("Comic Sans MS", 12, FontStyle.Bold);
+            label.ForeColor = Color.White;
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            label.Margin = new Padding(10);
+            label.Location = new Point(30, 10);
+            label.Dock = DockStyle.Top;
+        }
+
+        private void PanelViewSub(object senderPnl, Label label)
         {
             Panel = (Panel)senderPnl;
             Panel.BackColor = Color.FromArgb(169, 83, 118);
@@ -177,15 +199,12 @@ namespace RECO.Forms
             if (Frender)
             {
                  flowLayoutPanel1.BackColor = System.Drawing.Color.White;
-                flowLayoutPanel1.Width = 270;
+                flowLayoutPanel1.Width = 240;
                 flowLayoutPanel1.Height += 100;
                 flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
                 flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left))));
                 flowLayoutPanel2.Visible = true;
              
-
-
-
             }
             flowLayoutPanel1.Controls.Clear();
 
@@ -303,7 +322,7 @@ namespace RECO.Forms
                                 Done done = new Done();
                                 done.Show();
                                 repoNamelable.Text = content;
-                                MessageBox.Show(allDirpath);
+                               // MessageBox.Show(allDirpath);
                                 edit.Dispose();
                                 done.Dispose();
                             }
@@ -388,7 +407,7 @@ namespace RECO.Forms
             string path = _PATH ; //path
            
 
-            MessageBox.Show((System.IO.Directory.GetDirectories(path).OrderBy(_ =>(_.Length,_)).LastOrDefault()));
+          //  MessageBox.Show((System.IO.Directory.GetDirectories(path).OrderBy(_ =>(_.Length,_)).LastOrDefault()));
 
             int directoryCount = System.IO.Directory.GetDirectories(path).Length;
             int G = 2;
@@ -428,7 +447,7 @@ namespace RECO.Forms
             }
             //  int Number = directoryCount + 1;
        //     MessageBox.Show($@"{path} {createdName}");
-            if (string.IsNullOrWhiteSpace(createdName)  )
+            if (string.IsNullOrWhiteSpace(createdName))
             {
                 createdName = "New Repo 1";
             }

@@ -74,9 +74,9 @@ namespace RECO.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(355, 31);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(319, 31);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(413, 300);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(449, 300);
             this.flowLayoutPanel2.TabIndex = 1;
             this.flowLayoutPanel2.Visible = false;
             // 
