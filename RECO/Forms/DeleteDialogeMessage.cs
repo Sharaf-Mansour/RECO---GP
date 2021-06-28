@@ -27,17 +27,14 @@ namespace RECO.Forms
 
         }
 
-        private void iconButton3_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-            
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            Dispose();
+        }
     }
 }

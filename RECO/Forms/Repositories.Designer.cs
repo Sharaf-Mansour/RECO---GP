@@ -44,7 +44,6 @@ namespace RECO.Forms
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(724, 285);
             this.flowLayoutPanel1.TabIndex = 0;
-            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
             // BtnAddRepo
             // 
@@ -91,7 +90,6 @@ namespace RECO.Forms
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Repositories";
             this.Text = "Repositories";
-            this.Load += new System.EventHandler(this.Repositories_Load);
             this.ResumeLayout(false);
 
         }

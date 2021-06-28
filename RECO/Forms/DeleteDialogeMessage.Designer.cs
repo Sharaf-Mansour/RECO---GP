@@ -30,9 +30,9 @@ namespace RECO.Forms
         private void InitializeComponent()
         {
             this.Yes = new FontAwesome.Sharp.IconButton();
-            this.Cancel = new FontAwesome.Sharp.IconButton();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.Cancel = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,28 +55,6 @@ namespace RECO.Forms
             this.Yes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Yes.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.Yes.UseVisualStyleBackColor = true;
-          //  this.Yes.Click += new System.EventHandler(this.Yes_Click);
-            // 
-            // Cancel
-            // 
-            this.Cancel.AutoSize = true;
-            this.Cancel.FlatAppearance.BorderSize = 0;
-            this.Cancel.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.Cancel.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Cancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Cancel.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
-            this.Cancel.IconColor = System.Drawing.Color.White;
-            this.Cancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Cancel.IconSize = 45;
-            this.Cancel.Location = new System.Drawing.Point(172, 115);
-            this.Cancel.Name = "Cancel";
-            this.Cancel.Size = new System.Drawing.Size(57, 51);
-            this.Cancel.TabIndex = 2;
-            this.Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.Cancel.UseVisualStyleBackColor = true;
-            this.Cancel.Click += new System.EventHandler(this.iconButton3_Click);
             // 
             // iconPictureBox1
             // 
@@ -102,6 +80,27 @@ namespace RECO.Forms
             this.label1.Text = "Do You Want To Delete  This Repository ?";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // Cancel
+            // 
+            this.Cancel.AutoSize = true;
+            this.Cancel.FlatAppearance.BorderSize = 0;
+            this.Cancel.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.Cancel.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Cancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Cancel.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
+            this.Cancel.IconColor = System.Drawing.Color.White;
+            this.Cancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Cancel.IconSize = 45;
+            this.Cancel.Location = new System.Drawing.Point(172, 115);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(57, 51);
+            this.Cancel.TabIndex = 2;
+            this.Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
+            // 
             // DeleteDialogeMessage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -125,9 +124,9 @@ namespace RECO.Forms
         }
 
         #endregion
-        private FontAwesome.Sharp.IconButton Cancel;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private System.Windows.Forms.Label label1;
         public FontAwesome.Sharp.IconButton Yes;
+        public FontAwesome.Sharp.IconButton Cancel;
     }
 }

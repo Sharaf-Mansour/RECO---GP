@@ -5,18 +5,20 @@ using System.Windows.Forms;
 using System.Linq;
 using System.Diagnostics;
 using ePOSOne.btnProduct;
+using System.Threading.Tasks;
 
 namespace RECO.Forms
 {
     public partial class Repositories : Form
     {
-        private Panel Panel;
-        private Button DeleteButton;
-        private PictureBox Picture;
+        // private Panel Panel { get; set; }
+        string _PATH;
+        //   private Button DeleteButton
+        Label addReposmsg { get; set; } = new Label();
 
-        private RoundedButton EditButton;
-        private Label NothingIn;
-        private bool Frender = false;
+        private RoundedButton EditButton { get; set; }
+        private Label NothingIn { get; set; }
+        private bool Frender { get; set; } = false;
         public Repositories(string? Path = null)
         {
             InitializeComponent();
@@ -35,9 +37,11 @@ namespace RECO.Forms
 
         private void NoRepoLabel(object senderLbl)
         {
-            NothingIn = (Label)senderLbl;
+            if (!Frender)
+            {
+                    NothingIn = (Label)senderLbl;
             NothingIn.FlatStyle = FlatStyle.Flat;
-            //NothingIn.BackColor = Color.FromArgb(237, 168, 116);
+            //NothingIn.BackColor = Color.FromArgb(237, 168, 116);  
             NothingIn.Text = "There Is Nothing To Show ";
             NothingIn.Font = new Font("arial", 12);
             NothingIn.Width = 350;
@@ -45,13 +49,86 @@ namespace RECO.Forms
             NothingIn.TextAlign = ContentAlignment.MiddleCenter;
             // NothingIn.Location = new Point(200,100);
             NothingIn.Size = new Size(300, 250);
-            NothingIn.Dock = DockStyle.Bottom;
+            NothingIn.Dock = DockStyle.Top;
             NothingIn.Margin = new Padding(245, 30, 0, 0);
         }
+        }
 
-        private void buttonDelete(object senderBtn)
+
+        private void PictureSetter(PictureBox senderBtn,string Source)
         {
-            DeleteButton = (Button)senderBtn;
+            senderBtn.Location = new Point(70, 45);
+            Label label = new Label();
+            label.Text = "X";
+            label.AutoSize = true;
+            label.BackColor = Color.Transparent;
+            label.Location = new Point(0, 0);
+            senderBtn.Controls.Add(label);
+            // Panel.Size = new Size(180, 100);
+            senderBtn.Margin = new Padding(25);
+            senderBtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            senderBtn.Image  = Image.FromFile(Source);
+            senderBtn.Name = Source;
+            senderBtn.Dock = DockStyle.Top;
+            senderBtn.Size = new Size(180, 100);
+            senderBtn.Click += delegate{
+                string path = Environment.GetFolderPath(
+                    Environment.SpecialFolder.ProgramFiles);
+                var psi = new ProcessStartInfo( "rundll32.exe",
+                    String.Format( "\"{0}{1}\", ImageView_Fullscreen {2}",
+                  Environment.Is64BitOperatingSystem ?  path.Replace(" (x86)", "") : path,
+                  @"\Windows Photo Viewer\PhotoViewer.dll",
+                  Source));
+                psi.UseShellExecute = false;
+
+             
+               Process.Start(psi);
+
+            };
+            label.Click += delegate {
+               
+
+                File.Delete(Source);
+
+            };
+            //foreach (PictureBox item in flowLayoutPanel2.Controls)
+            //{
+            //    item.Image.Dispose();
+            //    item.Dispose();
+            //}
+           // senderBtn.Image.Dispose();
+          //  senderBtn.Dispose();
+        }
+
+
+        private void buttonBrowse(Button senderBtn,string Source)
+        {
+             senderBtn.FlatStyle = FlatStyle.Flat;
+            senderBtn.BackColor = Color.FromArgb(237, 168, 116);
+            senderBtn.ForeColor = Color.Red;
+            senderBtn.Text = "Browse";
+            senderBtn.Font = new Font("arial", 8);
+            senderBtn.TextAlign = ContentAlignment.MiddleCenter;
+            senderBtn.Dock = DockStyle.Bottom;
+            senderBtn.Location = new Point(70, 45);
+            senderBtn.Click += delegate { 
+            using var x = new OpenFileDialog();
+                x.InitialDirectory = @"C:\";
+                x.Filter = "Photos files (*.png,*.jpg,*.jpeg)|*.png|*.jpg|*.jpeg";
+                x.Multiselect = true;
+                x.ShowDialog();
+                        for (int i = 0; i < x.FileNames.Count(); i++)
+                {
+                    File.Copy(x.FileNames[i], Source + "/" + x.SafeFileNames[i]);
+                   
+                }
+
+            };
+
+
+        }
+        private void buttonDelete(Button DeleteButton)
+        {
             DeleteButton.FlatStyle = FlatStyle.Flat;
             DeleteButton.BackColor = Color.FromArgb(237, 168, 116);
             DeleteButton.ForeColor = Color.Red;
@@ -60,47 +137,112 @@ namespace RECO.Forms
             DeleteButton.TextAlign = ContentAlignment.MiddleCenter;
             DeleteButton.Location = new Point(70, 45);
             DeleteButton.Dock = DockStyle.Bottom;
+          
         }
-
-        private void PictureSetter(object senderBtn,string Source)
+        void Delete(Button DeleteButton,string allDirpath, Panel panel)
         {
-            Picture = (PictureBox)senderBtn;
-            Picture.Location = new Point(70, 45);
-            Panel.Size = new Size(180, 100);
-            Picture.Margin = new Padding(25);
-            Picture.SizeMode = PictureBoxSizeMode.StretchImage;
-            Picture.Image  = Image.FromFile(Source);
-            Picture.Dock = DockStyle.Top;
-            Picture.Size = new Size(180, 100);
+            DeleteButton.Click += delegate // delete button action
+            {
+                DeleteDialogeMessage delete = new DeleteDialogeMessage();
+                delete.Show();
+                Done done = new Done();
 
-            Picture.Click += delegate{
+                delete.Yes.Click += delegate
+                {
+                    if (Frender)
+                    {
+                        DirectoryInfo x = new DirectoryInfo(allDirpath);
+                        while (x.GetFiles().Length > 0)
+                        {
+                            foreach (PictureBox item in flowLayoutPanel2.Controls)
+                            {
+                                item.Image = null;
+                            }
+                            if (flowLayoutPanel2.Controls.Count > 0)
+                            {
+                                try
+                                {
+                                    flowLayoutPanel2.Controls.RemoveAt(flowLayoutPanel2.Controls.Count - 1);
+                                }
+                                catch
+                                {
+                                }
+                            }
 
-                string path = Environment.GetFolderPath(
-                    Environment.SpecialFolder.ProgramFiles);
-                var psi = new ProcessStartInfo( "rundll32.exe",
-                    String.Format( "\"{0}{1}\", ImageView_Fullscreen {2}",
-                  Environment.Is64BitOperatingSystem ?  path.Replace(" (x86)", "") : path,
-                  @"\Windows Photo Viewer\PhotoViewer.dll",
-                  Source));
+                            //        flowLayoutPanel2.Controls.Clear();
+                            Task.Delay(200);
+                            foreach (var item in x.GetFiles())
+                            {
+                                try
+                                {
+                                    File.Delete(item.FullName);
+                                    // MessageBox.Show($"You have {x.GetFiles().Length } left to be deleted");
 
-                //var psi = new ProcessStartInfo("rundll32.exe",$@"'{(Environment.Is64BitOperatingSystem ?path.Replace(" (x86)", "") :
-                //        path)}\Windows Photo Viewer\PhotoViewer.dll', ImageView_Fullscreen '{Source}'");
+                                }
+                                catch
+                                {
+                                }
 
-                psi.UseShellExecute = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DirectoryInfo x = new DirectoryInfo(allDirpath);
 
-             
-               Process.Start(psi);
+                        foreach (var item in x.GetDirectories())
+                        {
+                            foreach (var file in item.GetFiles())
+                            {
+                                try
+                                {
+                                    File.Delete(file.FullName);
+                                }
+                                catch
+                                {
+                                }
+                            }
+                            try
+                            {
+                                Directory.Delete(item.FullName);
+                            }
+                            catch
+                            {
+                            }
 
-               // Process.Start(@"%SystemRoot%\System32\rundll32.exe %ProgramFiles%\Windows Photo Viewer\PhotoViewer.dll", $@"{Source} ");
-                //Process photoViewer = new Process();
-                //photoViewer.StartInfo.FileName = Source;
-                //photoViewer.StartInfo.Arguments = Source;
-                //photoViewer.Start();
+                        }
+                    }
+                    if (Directory.Exists(allDirpath))
+                    {
+                        Directory.Delete(allDirpath);
+                    }
+
+                    foreach (Control item in panel.Controls)
+                    {
+                        item.Dispose();
+                    }
+                    panel.Dispose();
+                    delete.Dispose();
+                    delete.Close();
+                    done.Show();
+                    NoRepoLabel(addReposmsg);
+            
+                    if (flowLayoutPanel1.Controls.Count is 1)
+                        addReposmsg.Visible = true;
+                    else addReposmsg.Visible = false;
+                    if (Frender)
+                    {
+                        addReposmsg.Visible = false;
+
+                    }
+                };
+
+                //if (flowLayoutPanel1.Controls.Count is 0)
+                //    addReposmsg.Visible = true;
+                //else addReposmsg.Visible = false;
             };
 
         }
-
-
         private void buttonEdit(object senderBtn)
         {
             EditButton = (RoundedButton)senderBtn;
@@ -117,65 +259,56 @@ namespace RECO.Forms
 
 
 
-        private void PanelView(object senderPnl, Label label)
+        private void PanelView(Panel senderPnl, Label label,string allDirpath)
         {
-            Panel = (Panel)senderPnl;
-            Panel.BackColor = Color.FromArgb(169, 83, 118);
-            Panel.ForeColor = Color.White;
-            Panel.Margin = new Padding(20);
-            Panel.BorderStyle = BorderStyle.FixedSingle;
-            Panel.Location = new Point(56, 90);
-            Panel.Size = new Size(180, 100);
+            senderPnl.BackColor = Color.FromArgb(169, 83, 118);
+            senderPnl.ForeColor = Color.White;
+            senderPnl.Margin = new Padding(12);
+            senderPnl.BorderStyle = BorderStyle.FixedSingle;
+            senderPnl.Location = new Point(56, 90);
+            senderPnl.Size = new Size(180, 100);
             label.BorderStyle = BorderStyle.None;
             label.Font = new Font("Comic Sans MS", 12, FontStyle.Bold);
             label.ForeColor = Color.White;
             label.TextAlign = ContentAlignment.MiddleCenter;
-            label.Margin = new Padding(10);
+            label.Margin = new Padding(7);
             label.Location = new Point(30, 10);
             label.Dock = DockStyle.Top;
+            label.Click += delegate
+            {
+                foreach (PictureBox item in flowLayoutPanel2.Controls)
+                {
+                    item.Image.Dispose();
+                    item.Dispose();
+                    flowLayoutPanel2.Controls.Clear();
+
+                }
+                //  KeyWords keyWords = new KeyWords(allDirpath);
+                if (Frender)
+                {
+              
+                    DirectoryInfo DirectoryInfo = new DirectoryInfo($@"{allDirpath}"); // get all info
+                    foreach (FileInfo item in DirectoryInfo.GetFiles())
+                    {
+                        if (Path.GetExtension(item.FullName).ToLower() is ".jpg" or ".png")
+                        {
+                            PictureBox PictureBox = new();
+                            PictureSetter(PictureBox, item.FullName);
+                            flowLayoutPanel2.Controls.Add(PictureBox);
+                        }
+                    }
+                    return;
+                }
+                else
+                {
+                    Frender = true;
+                    viewRepos(allDirpath);
+                }
+            };
+
+
         }
-
-        private void PanelViewSub(object senderPnl, Label label)
-        {
-            Panel = (Panel)senderPnl;
-            Panel.BackColor = Color.FromArgb(169, 83, 118);
-            Panel.ForeColor = Color.White;
-            Panel.Margin = new Padding(20);
-            Panel.BorderStyle = BorderStyle.FixedSingle;
-            Panel.Location = new Point(56, 90);
-            Panel.Size = new Size(180, 100);
-            label.BorderStyle = BorderStyle.None;
-            label.Font = new Font("Comic Sans MS", 12, FontStyle.Bold);
-            label.ForeColor = Color.White;
-            label.TextAlign = ContentAlignment.MiddleCenter;
-            label.Margin = new Padding(10);
-            label.Location = new Point(30, 10);
-            label.Dock = DockStyle.Top;
-        }
-
-
-        Label addReposmsg = new Label(); //this label handle empty "All repos folder"
-
-
-        public void newOpenChildForm(Form childForm)
-        {
-            formMain formMain = new formMain();
-            // open only form
-            /* if (currentChildForm != null)
-             {
-                 currentChildForm.Close();
-             }
-             currentChildForm = childForm;*/
-            // End
-            childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
-            // panelDesktop.Controls.Add(childForm);
-            //panelDesktop.Tag = childForm;
-            childForm.BringToFront();
-            childForm.Show();
-            // lblTitleChildForm.Text = childForm.Text;
-        }
+         //this label handle empty "All repos folder"
         public string CheckName(string content,string path)
         {
             string compare = "default";
@@ -187,13 +320,10 @@ namespace RECO.Forms
                 if (dri.Name == content)
                 {
                     compare = content;
-
                 }
-
             }
             return compare;
         }
-        string _PATH;
             public void viewRepos(string path = @"D:\AllRepos\")
         {
             if (Frender)
@@ -201,10 +331,13 @@ namespace RECO.Forms
                  flowLayoutPanel1.BackColor = System.Drawing.Color.White;
                 flowLayoutPanel1.Width = 240;
                 flowLayoutPanel1.Height += 100;
-                flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
                 flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left))));
                 flowLayoutPanel2.Visible = true;
-             
+                foreach (PictureBox item in flowLayoutPanel2.Controls)
+                {
+                    item.Image.Dispose();
+                    item.Dispose();
+                }
             }
             flowLayoutPanel1.Controls.Clear();
 
@@ -228,53 +361,30 @@ namespace RECO.Forms
 
             if ((dirs.Length != 0))
             {
-
                 foreach (DirectoryInfo dri in dirArr.OrderBy(_=> _.Name))
                 {
-                   string allDirpath = path + dri.Name ;
+                string    allDirpath = path+@"\" + dri.Name ;
                     Button button_x = new Button(); // remove button
                     Label repoNamelable = new Label(); // """label that holds the repo name
-                    Panel panel = new Panel(); // the panel holds dir name button && remove button && rename button
-                    PanelView(panel, repoNamelable);
-                    Button repoRename = new Button(); // the I button , next to remove button
-                    panel.Tag = i;
+                    Panel panel = new Panel();
                     panel.Text = dri.Name;
-                    buttonDelete(button_x);
-                    buttonEdit(repoRename);
+                    panel.Tag = i;
                     repoNamelable.Text = dri.Name;
                     panel.Controls.Add(repoNamelable);
+                    PanelView(panel, repoNamelable, allDirpath);
+                  if (Frender)   {
+                        Button Browse = new();
+                        buttonBrowse(Browse, allDirpath);
+                        panel.Controls.Add(Browse);
+                    }
+                    // the panel holds dir name button && remove button && rename button
+                    RoundedButton repoRename = new (); // the I button , next to remove button
+                    //Delete(button_x, allDirpath, panel);
+                    //buttonDelete(button_x);
+                    buttonEdit(repoRename);
+                 
 
-                    button_x.Click += delegate // delete button action
-                    {
-                        DeleteDialogeMessage delete = new DeleteDialogeMessage();
-                        Done done = new Done();
-                        delete.Show();
-
-                        delete.Yes.Click += delegate
-                        {
-                            if (Directory.Exists(allDirpath))
-                            {
-                                Directory.Delete(allDirpath);
-                            }
-                            delete.Dispose();
-
-                            panel.Controls.Clear();
-                            panel.Dispose();
-                            done.Show();
-
-
-                        };
-
-                    };
-                    
-                    //panel.Click += delegate
-                    //{
-                    //    MessageBox.Show(dri.FullName);
-                    //    //KeyWords keyWords = new KeyWords();
-                    //    //keyWords.ShowDialog();
-                    //};
-
-
+                 
                     repoRename.Click += delegate //rename button
                     {
                         EditDialogeMessage edit = new EditDialogeMessage();
@@ -317,8 +427,10 @@ namespace RECO.Forms
 
                             else
                             {
-                                Directory.Move(dri.FullName, Path.Combine(dri.Name, path + content));
-                                allDirpath = path + content;
+                                DirectoryInfo di = new DirectoryInfo(allDirpath); // get all info
+                                di.Rename(_PATH + content);
+                                //Microsoft.VisualBasic.FileIO.FileSystem.RenameDirectory(allDirpath, _PATH + content);
+                                allDirpath = _PATH + content;
                                 Done done = new Done();
                                 done.Show();
                                 repoNamelable.Text = content;
@@ -332,83 +444,27 @@ namespace RECO.Forms
 
 
                     };
-                    repoNamelable.Click += delegate
-                    {
-
-                        //  KeyWords keyWords = new KeyWords(allDirpath);
-                        if (Frender)
-                        {
-                          flowLayoutPanel2.Controls.Clear();
-                          DirectoryInfo DirectoryInfo = new DirectoryInfo($@"{path}/{repoNamelable.Text}"); // get all info
-                                  foreach (FileInfo item in DirectoryInfo.GetFiles())
-                                    {
-                                        if (Path.GetExtension(item.FullName).ToLower() is ".jpg" or ".png")
-                                        {
-                                            PictureBox PictureBox = new PictureBox();
-                                            PictureSetter(PictureBox, item.FullName);
-                                            flowLayoutPanel2.Controls.Add(PictureBox);
-                                        }
-                                    }
-                           return;
-                        }
-                        else
-                        {
-                            Frender = true;
-                            viewRepos(allDirpath);
-                        }
-                      
-
-                     //   this.Dispose();
-                     //   keyWords.Show();
-
-                    };
-
-                    buttonDelete(button_x);
-                    buttonEdit(repoRename);
+                    Delete(button_x, allDirpath, panel);
+                    buttonDelete(button_x); buttonEdit(repoRename);
                     panel.Controls.Add(button_x);
                     panel.Controls.Add(repoNamelable);
                     panel.Controls.Add(repoRename);
                     flowLayoutPanel1.Controls.Add(panel); // add the panel itself to the flow panel
                     i++;
-
-                    
-
-
-
     }//end foreach
-
-
-
+         
             }//end if
-            else
-            {
-
-                NoRepoLabel(addReposmsg);
+             NoRepoLabel(addReposmsg);
+                if (flowLayoutPanel1.Controls.Count is 0)   
                 flowLayoutPanel1.Controls.Add(addReposmsg);
-
-
-            }//end else
+            else addReposmsg.Visible = false;
         }//end viewropos msg
-
-
-        private void Repositories_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            addReposmsg.Dispose(); // if user v
+            // addReposmsg.Dispose(); // if user v
+       
             string path = _PATH ; //path
-           
-
-          //  MessageBox.Show((System.IO.Directory.GetDirectories(path).OrderBy(_ =>(_.Length,_)).LastOrDefault()));
-
+           //  MessageBox.Show((System.IO.Directory.GetDirectories(path).OrderBy(_ =>(_.Length,_)).LastOrDefault()));
             int directoryCount = System.IO.Directory.GetDirectories(path).Length;
             int G = 2;
             string createdName =" ";
@@ -455,20 +511,32 @@ namespace RECO.Forms
             // If directory does not exist, create it
             if (!Directory.Exists(dir))
             {
-
                 Directory.CreateDirectory(dir);
+ 
                 DirectoryInfo d = new DirectoryInfo(dir);
                 Button button_x = new Button();
                 Panel panel = new Panel();
                 Label repoName = new Label();
-                PanelView(panel, repoName);
-                Button repoRename = new Button();
-                buttonDelete(button_x);
-                buttonEdit(repoRename);
                 repoName.Text = createdName;
+                PanelView(panel, repoName,dir);
+        
+
+                if (Frender)
+                {
+                    Button Browse = new();
+                    buttonBrowse(Browse, dir);
+                    panel.Controls.Add(Browse);
+                }
+            
+                RoundedButton repoRename = new ();
+                buttonEdit(repoRename);
+
+                Delete(button_x, dir, panel);
+                buttonDelete(button_x);
                 panel.Controls.Add(repoName);
-                panel.Controls.Add(repoRename);
                 panel.Controls.Add(button_x);
+                panel.Controls.Add(repoRename);
+
                 repoRename.Click += delegate //rename button
                 {
                     EditDialogeMessage edit = new EditDialogeMessage();
@@ -511,55 +579,26 @@ namespace RECO.Forms
 
                         else
                         {
-
-
-
                             Directory.Move(d.FullName, Path.Combine(d.Name, path + content));
                             Done done = new Done();
                             done.Show();
                         }
                     };//end delegete 
                 };
+         
+                //};//end deleget 
+                flowLayoutPanel1.Controls.Add(panel);                // add the panel to the layout panel " The smallest panel => panel, the big one => flow layout panel
 
-                button_x.Click += delegate // delete button action
-                {
-                    DeleteDialogeMessage delete = new DeleteDialogeMessage();
-                    delete.Show();
-                    Done done = new Done();
-                    delete.Yes.Click += delegate
-                    {
-                        if (Directory.Exists(dir))
-                        {
-                            Directory.Delete(dir);
-                        }
-
-                        delete.Dispose();
-
-                        panel.Controls.Clear();
-                        panel.Dispose();
-                        done.Show();
-                    };
-
-                };//end deleget 
-
-                //repoName.Click += delegate
-                //{
-                //    KeyWords keyWords = new KeyWords();
-                //    this.Dispose();
-                //    keyWords.Show();
-                //};
-
-
-                //panel.Click += delegate
-                //{
-                //    KeyWords keyWords = new KeyWords();
-                //    keyWords.ShowDialog();
-                //};
-
-                flowLayoutPanel1.Controls.Add(panel); // add the panel to the layout panel " The smallest panel => panel, the big one => flow layout panel
-
+              
             }
+            if (!flowLayoutPanel1.Controls.Contains(addReposmsg))
+            {
+                flowLayoutPanel1.Controls.Add(addReposmsg);
+            }
+            if (flowLayoutPanel1.Controls.Count is 1)
+                addReposmsg.Visible = true;
+            else addReposmsg.Visible = false;
         }
-       
+
     }
 }
