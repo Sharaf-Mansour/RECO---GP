@@ -90,6 +90,7 @@ namespace RECO.Forms
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Repositories";
             this.Text = "Repositories";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Repositories_FormClosed_1);
             this.ResumeLayout(false);
 
         }

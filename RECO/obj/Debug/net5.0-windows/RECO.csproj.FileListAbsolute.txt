@@ -121,3 +121,4 @@ C:\Users\shara\Documents\GitHub\RECO---GP\RECO\obj\Debug\net5.0-windows\RECO.dll
 C:\Users\shara\Documents\GitHub\RECO---GP\RECO\obj\Debug\net5.0-windows\ref\RECO.dll
 C:\Users\shara\Documents\GitHub\RECO---GP\RECO\obj\Debug\net5.0-windows\RECO.pdb
 C:\Users\shara\Documents\GitHub\RECO---GP\RECO\obj\Debug\net5.0-windows\RECO.genruntimeconfig.cache
+C:\Users\shara\Documents\GitHub\RECO---GP\RECO\obj\Debug\net5.0-windows\RECO.csproj.AssemblyReference.cache
