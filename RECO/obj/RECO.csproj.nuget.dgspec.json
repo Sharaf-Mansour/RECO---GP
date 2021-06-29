@@ -1,37 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shara\\Documents\\GitHub\\RECO---GP\\RECO\\RECO.csproj": {}
+    "C:\\Users\\a7med\\OneDrive\\Documents\\GitHub\\RECO---GP\\RECO\\RECO.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shara\\Documents\\GitHub\\RECO---GP\\RECO\\RECO.csproj": {
+    "C:\\Users\\a7med\\OneDrive\\Documents\\GitHub\\RECO---GP\\RECO\\RECO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shara\\Documents\\GitHub\\RECO---GP\\RECO\\RECO.csproj",
+        "projectUniqueName": "C:\\Users\\a7med\\OneDrive\\Documents\\GitHub\\RECO---GP\\RECO\\RECO.csproj",
         "projectName": "RECO",
-        "projectPath": "C:\\Users\\shara\\Documents\\GitHub\\RECO---GP\\RECO\\RECO.csproj",
-        "packagesPath": "C:\\Users\\shara\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shara\\Documents\\GitHub\\RECO---GP\\RECO\\obj\\",
+        "projectPath": "C:\\Users\\a7med\\OneDrive\\Documents\\GitHub\\RECO---GP\\RECO\\RECO.csproj",
+        "packagesPath": "C:\\Users\\a7med\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\a7med\\OneDrive\\Documents\\GitHub\\RECO---GP\\RECO\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\shara\\NuGet.Config",
-          "C:\\Users\\shara\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WinForms.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\a7med\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0-windows7.0"
         ],
         "sources": {
-          "https://aka.ms/maui-preview/index.json": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

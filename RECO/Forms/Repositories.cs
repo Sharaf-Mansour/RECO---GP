@@ -39,19 +39,19 @@ namespace RECO.Forms
         {
             if (!Frender)
             {
-                    NothingIn = (Label)senderLbl;
-            NothingIn.FlatStyle = FlatStyle.Flat;
-            //NothingIn.BackColor = Color.FromArgb(237, 168, 116);  
-            NothingIn.Text = "There Is Nothing To Show ";
-            NothingIn.Font = new Font("arial", 12);
-            NothingIn.Width = 350;
-            NothingIn.ForeColor = Color.FromArgb(175, 240, 210);
-            NothingIn.TextAlign = ContentAlignment.MiddleCenter;
-            // NothingIn.Location = new Point(200,100);
-            NothingIn.Size = new Size(300, 250);
-            NothingIn.Dock = DockStyle.Top;
-            NothingIn.Margin = new Padding(245, 30, 0, 0);
-        }
+                NothingIn = (Label)senderLbl;
+                NothingIn.FlatStyle = FlatStyle.Flat;
+                //NothingIn.BackColor = Color.FromArgb(237, 168, 116);  
+                NothingIn.Text = "There Is Nothing To Show ";
+                NothingIn.Font = new Font("arial", 12);
+                NothingIn.Width = 350;
+                NothingIn.ForeColor = Color.FromArgb(175, 240, 210);
+                NothingIn.TextAlign = ContentAlignment.MiddleCenter;
+                // NothingIn.Location = new Point(200,100);
+                NothingIn.Size = new Size(300, 250);
+                NothingIn.Dock = DockStyle.Top;
+                NothingIn.Margin = new Padding(245, 30, 0, 0);
+            }
         }
 
 
@@ -101,45 +101,91 @@ namespace RECO.Forms
         }
 
 
-        private void buttonBrowse(Button senderBtn,string Source)
+        private void buttonBrowse(RoundedButton senderBtn,string Source)
         {
-             senderBtn.FlatStyle = FlatStyle.Flat;
-            senderBtn.BackColor = Color.FromArgb(237, 168, 116);
-            senderBtn.ForeColor = Color.Red;
-            senderBtn.Text = "Browse";
-            senderBtn.Font = new Font("arial", 8);
-            senderBtn.TextAlign = ContentAlignment.MiddleCenter;
-            senderBtn.Dock = DockStyle.Bottom;
-            senderBtn.Location = new Point(70, 45);
+            if (!Frender)
+            {
+                senderBtn.FlatStyle = FlatStyle.Flat;
+                //senderBtn.BackColor = Color.FromArgb(237, 168, 116);
+                senderBtn.BorderColor = Color.Yellow;
+                senderBtn.ButtonColor = Color.FromArgb(35, 155, 214);
+                senderBtn.OnHoverBorderColor = Color.FromArgb(85, 0, 46);
+                senderBtn.TextColor = Color.FromArgb(85, 0, 46);
+                senderBtn.ForeColor = Color.Red;
+                senderBtn.Text = "Browse";
+                senderBtn.Font = new Font("arial", 8);
+                senderBtn.TextAlign = ContentAlignment.MiddleCenter;
+                senderBtn.Dock = DockStyle.Bottom;
+                senderBtn.Location = new Point(70, 45);
+            }
+           else
+            {
+                senderBtn.FlatStyle = FlatStyle.Flat;
+                //senderBtn.BackColor = Color.FromArgb(237, 168, 116);
+                senderBtn.BorderColor = Color.Yellow;
+                senderBtn.ButtonColor = Color.FromArgb(35, 155, 214);
+                senderBtn.OnHoverBorderColor = Color.FromArgb(85, 0, 46);
+                senderBtn.TextColor = Color.FromArgb(85, 0, 46);
+                senderBtn.ForeColor = Color.Red;
+                senderBtn.Text = "Browse";
+                senderBtn.Font = new Font("arial", 8);
+                senderBtn.TextAlign = ContentAlignment.MiddleCenter;
+                senderBtn.Dock = DockStyle.Right;
+                senderBtn.Location = new Point(70, 45);
+                senderBtn.Size = new Size(42, 35);
+            }
             senderBtn.Click += delegate { 
             using var x = new OpenFileDialog();
                 x.InitialDirectory = @"C:\";
                 x.Filter = "Photos files (*.png,*.jpg,*.jpeg)|*.png|*.jpg|*.jpeg";
                 x.Multiselect = true;
                 x.ShowDialog();
-                        for (int i = 0; i < x.FileNames.Count(); i++)
+                for (int i = 0; i < x.FileNames.Count(); i++)
                 {
                     File.Copy(x.FileNames[i], Source + "/" + x.SafeFileNames[i]);
-                   
+
                 }
 
             };
 
 
         }
-        private void buttonDelete(Button DeleteButton)
+        private void buttonDelete(RoundedButton DeleteButton)
         {
-            DeleteButton.FlatStyle = FlatStyle.Flat;
-            DeleteButton.BackColor = Color.FromArgb(237, 168, 116);
-            DeleteButton.ForeColor = Color.Red;
-            DeleteButton.Text = "Delete";
-            DeleteButton.Font = new Font("arial", 8);
-            DeleteButton.TextAlign = ContentAlignment.MiddleCenter;
-            DeleteButton.Location = new Point(70, 45);
-            DeleteButton.Dock = DockStyle.Bottom;
-          
+            if (!Frender)
+            {
+                DeleteButton.FlatStyle = FlatStyle.Flat;
+                // DeleteButton.BackColor = Color.FromArgb(21, 168, 194);
+                DeleteButton.ButtonColor = Color.FromArgb(21, 168, 194);
+                DeleteButton.OnHoverBorderColor = Color.FromArgb(85, 0, 46);
+                DeleteButton.TextColor = Color.FromArgb(85, 0, 46);
+                DeleteButton.BorderColor = Color.Yellow;
+                DeleteButton.ForeColor = Color.Red;
+                DeleteButton.Text = "Delete";
+                DeleteButton.Font = new Font("arial", 8);
+                DeleteButton.TextAlign = ContentAlignment.MiddleCenter;
+                DeleteButton.Location = new Point(70, 45);
+                DeleteButton.Dock = DockStyle.Bottom;
+            }
+            else
+            {
+                DeleteButton.FlatStyle = FlatStyle.Flat;
+                // DeleteButton.BackColor = Color.FromArgb(21, 168, 194);
+                DeleteButton.ButtonColor = Color.FromArgb(21, 168, 194);
+                DeleteButton.OnHoverBorderColor = Color.FromArgb(85, 0, 46);
+                DeleteButton.TextColor = Color.FromArgb(85, 0, 46);
+                DeleteButton.BorderColor = Color.Yellow;
+                DeleteButton.ForeColor = Color.Red;
+                DeleteButton.Text = "Delete";
+                DeleteButton.Font = new Font("arial", 8);
+                DeleteButton.TextAlign = ContentAlignment.MiddleCenter;
+                DeleteButton.Location = new Point(70, 45);
+                DeleteButton.Size = new Size(42, 35);
+                DeleteButton.Dock = DockStyle.Right;
+
+            }
         }
-        void Delete(Button DeleteButton,string allDirpath, Panel panel)
+        void Delete(RoundedButton DeleteButton,string allDirpath, Panel panel)
         {
             DeleteButton.Click += delegate // delete button action
             {
@@ -245,35 +291,86 @@ namespace RECO.Forms
         }
         private void buttonEdit(object senderBtn)
         {
-            EditButton = (RoundedButton)senderBtn;
-            EditButton.FlatStyle = FlatStyle.Flat;
-            EditButton.BackColor = Color.FromArgb(237, 168, 116);
-            EditButton.ForeColor = Color.Red;
-            EditButton.Text = "Edit";
-            EditButton.Font = new Font("arial", 8);
-            EditButton.TextAlign = ContentAlignment.MiddleCenter;
-            EditButton.Location = new Point(70, 45);
-            EditButton.Dock = DockStyle.Bottom;
-            EditButton.BorderColor = Color.Yellow;
+            if (!Frender) 
+            {
+                EditButton = (RoundedButton)senderBtn;
+                // EditButton.FlatStyle = FlatStyle.Flat;
+                EditButton.FlatStyle = FlatStyle.Flat;
+                // EditButton.ButtonColor = Color.FromArgb ()
+                EditButton.ButtonColor = Color.FromArgb(33, 213, 217);
+                EditButton.OnHoverBorderColor = Color.FromArgb(85, 0, 46);
+                EditButton.ForeColor = Color.Red;
+                // EditButton.BorderColor = Color.FromArgb(44, 43, 97);
+                EditButton.Text = "Edit";
+                EditButton.TextColor = Color.FromArgb(85, 0, 46);
+                EditButton.Font = new Font("arial", 8);
+                EditButton.TextAlign = ContentAlignment.MiddleCenter;
+                EditButton.Location = new Point(70, 45);
+                EditButton.Dock = DockStyle.Bottom;
+                EditButton.BorderColor = Color.Yellow;
+                EditButton.Size = new Size(20, 20);
+            }
+            else
+            {
+                EditButton = (RoundedButton)senderBtn;
+                // EditButton.FlatStyle = FlatStyle.Flat;
+                EditButton.FlatStyle = FlatStyle.Flat;
+                // EditButton.ButtonColor = Color.FromArgb ()
+                EditButton.ButtonColor = Color.FromArgb(33, 213, 217);
+                EditButton.OnHoverBorderColor = Color.FromArgb(85, 0, 46);
+                EditButton.ForeColor = Color.Red;
+                // EditButton.BorderColor = Color.FromArgb(44, 43, 97);
+                EditButton.Text = "Edit";
+                EditButton.TextColor = Color.FromArgb(85, 0, 46);
+                EditButton.Font = new Font("arial", 8);
+                EditButton.TextAlign = ContentAlignment.MiddleCenter;
+                EditButton.Location = new Point(70, 45);
+                EditButton.Dock = DockStyle.Right;
+                EditButton.Size = new Size(42, 35);
+                EditButton.BorderColor = Color.Yellow;
+            }
+           
         }
 
 
 
         private void PanelView(Panel senderPnl, Label label,string allDirpath)
         {
-            senderPnl.BackColor = Color.FromArgb(169, 83, 118);
-            senderPnl.ForeColor = Color.White;
-            senderPnl.Margin = new Padding(12);
-            senderPnl.BorderStyle = BorderStyle.FixedSingle;
-            senderPnl.Location = new Point(56, 90);
-            senderPnl.Size = new Size(180, 100);
-            label.BorderStyle = BorderStyle.None;
-            label.Font = new Font("Comic Sans MS", 12, FontStyle.Bold);
-            label.ForeColor = Color.White;
-            label.TextAlign = ContentAlignment.MiddleCenter;
-            label.Margin = new Padding(7);
-            label.Location = new Point(30, 10);
-            label.Dock = DockStyle.Top;
+            if (!Frender)
+            {
+                senderPnl.BackColor = Color.FromArgb(44, 43, 97);
+                senderPnl.ForeColor = Color.White;
+                senderPnl.Margin = new Padding(12);
+                senderPnl.BorderStyle = BorderStyle.Fixed3D;
+                senderPnl.Location = new Point(56, 90);
+                senderPnl.Size = new Size(180, 100);
+                label.BorderStyle = BorderStyle.None;
+                label.Font = new Font("Comic Sans MS", 12, FontStyle.Bold);
+                label.ForeColor = Color.White;
+                label.TextAlign = ContentAlignment.MiddleCenter;
+                label.Margin = new Padding(7);
+                label.Location = new Point(30, 10);
+                label.Dock = DockStyle.Top;
+            }
+            else
+            {
+                senderPnl.BackColor = Color.FromArgb(44, 43, 97);
+                senderPnl.ForeColor = Color.White;
+                senderPnl.Margin = new Padding(10);
+                senderPnl.BorderStyle = BorderStyle.Fixed3D;
+                senderPnl.Location = new Point(56, 90);
+                senderPnl.Size = new Size(250, 35);
+                label.BorderStyle = BorderStyle.None;
+                label.Font = new Font("Comic Sans MS", 12, FontStyle.Bold);
+                label.ForeColor = Color.White;
+               // label.Dock = DockStyle.Left;
+                label.TextAlign = ContentAlignment.MiddleLeft;
+                label.Margin = new Padding(5);
+                label.Size = new Size(50, 35);
+                label.Location = new Point(30, 10);
+                label.Dock = DockStyle.Fill;
+            }
+            
             label.Click += delegate
             {
                 foreach (PictureBox item in flowLayoutPanel2.Controls)
@@ -329,7 +426,7 @@ namespace RECO.Forms
             if (Frender)
             {
                  flowLayoutPanel1.BackColor = System.Drawing.Color.White;
-                flowLayoutPanel1.Width = 240;
+                flowLayoutPanel1.Width = 290;
                 flowLayoutPanel1.Height += 100;
                 flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left))));
                 flowLayoutPanel2.Visible = true;
@@ -364,7 +461,7 @@ namespace RECO.Forms
                 foreach (DirectoryInfo dri in dirArr.OrderBy(_=> _.Name))
                 {
                 string    allDirpath = path+@"\" + dri.Name ;
-                    Button button_x = new Button(); // remove button
+                    RoundedButton button_x = new RoundedButton(); // remove button
                     Label repoNamelable = new Label(); // """label that holds the repo name
                     Panel panel = new Panel();
                     panel.Text = dri.Name;
@@ -373,7 +470,7 @@ namespace RECO.Forms
                     panel.Controls.Add(repoNamelable);
                     PanelView(panel, repoNamelable, allDirpath);
                   if (Frender)   {
-                        Button Browse = new();
+                        RoundedButton Browse = new();
                         buttonBrowse(Browse, allDirpath);
                         panel.Controls.Add(Browse);
                     }
@@ -445,7 +542,8 @@ namespace RECO.Forms
 
                     };
                     Delete(button_x, allDirpath, panel);
-                    buttonDelete(button_x); buttonEdit(repoRename);
+                    buttonDelete(button_x);
+                    buttonEdit(repoRename);
                     panel.Controls.Add(button_x);
                     panel.Controls.Add(repoNamelable);
                     panel.Controls.Add(repoRename);
@@ -470,43 +568,90 @@ namespace RECO.Forms
             string createdName =" ";
             foreach (var item in System.IO.Directory.GetDirectories(path))
             {
-                if (item == $@"{path} New Repo ({G})")
+                if (!Frender) 
                 {
-                    G++;
-                    createdName = $"New Repo ({G})";
-              //      MessageBox.Show($@"{path} {createdName}");
-                    if ((System.IO.Directory.GetDirectories(path).OrderBy(_ => (_.Length, _)).LastOrDefault() == $@"{path} {createdName}"))
-                    {
-                        createdName = $"New Repo ({++G})";
-                        break;
-                    }
-                }
-                else
-                {
-                    createdName = $"New Repo ({G})";
-              //      MessageBox.Show($@"{path} {createdName}");
-                    if (System.IO.Directory.GetDirectories($@"{path}").Contains($@"{path} {createdName}"))
+                    if (item == $@"{path} New Repo ({G})")
                     {
                         G++;
+                        createdName = $"New Repo ({G})";
+                        //      MessageBox.Show($@"{path} {createdName}");
                         if ((System.IO.Directory.GetDirectories(path).OrderBy(_ => (_.Length, _)).LastOrDefault() == $@"{path} {createdName}"))
                         {
-                            createdName = $"New Repo ({G})";
+                            createdName = $"New Repo ({++G})";
                             break;
                         }
                     }
                     else
                     {
                         createdName = $"New Repo ({G})";
-                        break;
+                        //      MessageBox.Show($@"{path} {createdName}");
+                        if (System.IO.Directory.GetDirectories($@"{path}").Contains($@"{path} {createdName}"))
+                        {
+                            G++;
+                            if ((System.IO.Directory.GetDirectories(path).OrderBy(_ => (_.Length, _)).LastOrDefault() == $@"{path} {createdName}"))
+                            {
+                                createdName = $"New Repo ({G})";
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            createdName = $"New Repo ({G})";
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    if (item == $@"{path} Keyword ({G})")
+                    {
+                        G++;
+                        createdName = $"Keyword ({G})";
+                        //      MessageBox.Show($@"{path} {createdName}");
+                        if ((System.IO.Directory.GetDirectories(path).OrderBy(_ => (_.Length, _)).LastOrDefault() == $@"{path} {createdName}"))
+                        {
+                            createdName = $"Keyword ({++G})";
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        createdName = $"Keyword ({G})";
+                        //      MessageBox.Show($@"{path} {createdName}");
+                        if (System.IO.Directory.GetDirectories($@"{path}").Contains($@"{path} {createdName}"))
+                        {
+                            G++;
+                            if ((System.IO.Directory.GetDirectories(path).OrderBy(_ => (_.Length, _)).LastOrDefault() == $@"{path} {createdName}"))
+                            {
+                                createdName = $"Keyword ({G})";
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            createdName = $"Keyword ({G})";
+                            break;
+                        }
                     }
                 }
             }
             //  int Number = directoryCount + 1;
        //     MessageBox.Show($@"{path} {createdName}");
-            if (string.IsNullOrWhiteSpace(createdName))
+       if (!Frender) 
             {
-                createdName = "New Repo 1";
+                if (string.IsNullOrWhiteSpace(createdName))
+                {
+                    createdName = "Repo";
+                }
             }
+       else
+            {
+                if (string.IsNullOrWhiteSpace(createdName))
+                {
+                    createdName = "Keyword";
+                }
+            }
+            
             string dir = @$"{path} {createdName}";
             // If directory does not exist, create it
             if (!Directory.Exists(dir))
@@ -514,7 +659,7 @@ namespace RECO.Forms
                 Directory.CreateDirectory(dir);
  
                 DirectoryInfo d = new DirectoryInfo(dir);
-                Button button_x = new Button();
+                RoundedButton button_x = new RoundedButton() ;
                 Panel panel = new Panel();
                 Label repoName = new Label();
                 repoName.Text = createdName;
@@ -523,7 +668,7 @@ namespace RECO.Forms
 
                 if (Frender)
                 {
-                    Button Browse = new();
+                    RoundedButton Browse = new();
                     buttonBrowse(Browse, dir);
                     panel.Controls.Add(Browse);
                 }

@@ -39,7 +39,7 @@ namespace RECO.Forms
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(24)))), ((int)(((byte)(59)))));
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(2)))), ((int)(((byte)(3)))));
             this.flowLayoutPanel1.Location = new System.Drawing.Point(39, 31);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(724, 285);
@@ -73,9 +73,9 @@ namespace RECO.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(319, 31);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(349, 31);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(449, 300);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(419, 300);
             this.flowLayoutPanel2.TabIndex = 1;
             this.flowLayoutPanel2.Visible = false;
             // 
